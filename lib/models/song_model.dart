@@ -43,3 +43,11 @@ class SongModel {
     return songs;
   }
 }
+/*
+onPressed: () {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => const SecondRoute()),
+  );
+}
+*/

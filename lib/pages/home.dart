@@ -1,6 +1,10 @@
 import 'package:fitness/models/song_model.dart';
+import 'package:fitness/pages/gptsong/music_player.dart';
+import 'package:fitness/pages/songPages/song_detail_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import 'songPages/songs_tab.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -68,34 +72,42 @@ class HomePage extends StatelessWidget {
           height: 240,
           child: ListView.separated(
             itemBuilder: (context, index) {
-              return Container(
-                width: 210,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(songsList[index].bgImage),
-                      fit: BoxFit.cover,
-                    ),
-                    borderRadius: BorderRadius.circular(20)),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Container(
-                      height: 20,
-                      width: 200,
-                      decoration: BoxDecoration(
-                          color: opaqueColor,
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Center(
-                        child: Text(
-                          songsList[index].duration,
-                          style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 14),
-                        ),
+              return InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MusicPlayerPage()),
+                  );
+                },
+                child: Container(
+                  width: 210,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(songsList[index].bgImage),
+                        fit: BoxFit.cover,
                       ),
-                    )
-                  ],
+                      borderRadius: BorderRadius.circular(20)),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        height: 20,
+                        width: 200,
+                        decoration: BoxDecoration(
+                            color: opaqueColor,
+                            borderRadius: BorderRadius.circular(20)),
+                        child: Center(
+                          child: Text(
+                            songsList[index].duration,
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 14),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               );
             },
