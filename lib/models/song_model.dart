@@ -10,14 +10,12 @@ class SongModel {
     List<SongModel> songs = [];
 
     songs.add(SongModel(
-        name: 'Honey Pancake',
+        name: 'En el bosque',
         bgImage: 'assets/bgs/zen1.jpeg',
         duration: '30 mins'));
 
     songs.add(SongModel(
-        name: 'Canai Bread',
-        bgImage: 'assets/bgs/zen1.jpeg',
-        duration: '20 mins'));
+        name: 'Lluvia', bgImage: 'assets/bgs/zen1.jpeg', duration: '20 mins'));
 
     return songs;
   }
@@ -26,28 +24,20 @@ class SongModel {
     List<SongModel> songs = [];
 
     songs.add(SongModel(
-        name: 'Honey Pancake',
+        name: 'Meditacion 1',
         bgImage: 'assets/bgs/zen2.jpeg',
         duration: '4 mins'));
 
     songs.add(SongModel(
-        name: 'Canai Bread',
+        name: 'Meditacion 2',
         bgImage: 'assets/bgs/zen2.jpeg',
         duration: '5 mins'));
 
     songs.add(SongModel(
-        name: 'Canai Bread',
+        name: 'Meditacion 3',
         bgImage: 'assets/bgs/zen2.jpeg',
         duration: '15 mins'));
 
     return songs;
   }
 }
-/*
-onPressed: () {
-  Navigator.push(
-    context,
-    MaterialPageRoute(builder: (context) => const SecondRoute()),
-  );
-}
-*/

@@ -1,10 +1,7 @@
 import 'package:fitness/models/song_model.dart';
 import 'package:fitness/pages/gptsong/music_player.dart';
-import 'package:fitness/pages/songPages/song_detail_tab.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
-import 'songPages/songs_tab.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -75,9 +72,12 @@ class HomePage extends StatelessWidget {
               return InkWell(
                 onTap: () {
                   Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => MusicPlayerPage()),
-                  );
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MusicPlayerPage(
+                            songName: songsList[index].name,
+                            bgImage: songsList[index].bgImage),
+                      ));
                 },
                 child: Container(
                   width: 210,

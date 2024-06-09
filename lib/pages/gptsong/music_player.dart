@@ -2,13 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 
 class MusicPlayerPage extends StatefulWidget {
-  const MusicPlayerPage({super.key});
+  final String songName;
+  final String bgImage;
+
+  const MusicPlayerPage(
+      {super.key, required this.songName, required this.bgImage});
 
   @override
   State<MusicPlayerPage> createState() => _MusicPlayerPageState();
 }
 
 class _MusicPlayerPageState extends State<MusicPlayerPage> {
+  var opaqueColor = const Color.fromARGB(100, 0, 0, 0);
+
   final AudioPlayer _audioPlayer = AudioPlayer();
   bool isPlaying = false;
 
@@ -38,7 +44,7 @@ class _MusicPlayerPageState extends State<MusicPlayerPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Music Player'),
+        title: Text(widget.songName),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
@@ -47,17 +53,26 @@ class _MusicPlayerPageState extends State<MusicPlayerPage> {
         ),
       ),
       body: Center(
+          child: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+          image: AssetImage(widget.bgImage),
+          fit: BoxFit.fill,
+        )),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             IconButton(
               icon: Icon(isPlaying ? Icons.pause : Icons.play_arrow),
               iconSize: 64.0,
+              color: Colors.white,
               onPressed: isPlaying ? _pauseMusic : _playMusic,
             ),
           ],
         ),
-      ),
+      )),
     );
   }
 }
