@@ -1,21 +1,18 @@
-import 'package:fitness/models/category_model.dart';
-import 'package:fitness/models/diet_model.dart';
-import 'package:fitness/models/popular_model.dart';
+import 'package:fitness/models/song_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
-  List<CategoryModel> categories = [];
-  List<SongModel> songs = [];
-  List<PopularDietsModel> popularDiets = [];
+  List<SongModel> musicaParaMeditarSongs = [];
+  List<SongModel> descansarMejorSongs = [];
+
   var opaqueColor = const Color.fromARGB(100, 0, 0, 0);
 
   void _getInitialInfo() {
-    categories = CategoryModel.getCategories();
-    songs = SongModel.getSongs();
-    popularDiets = PopularDietsModel.getPopularDiets();
+    descansarMejorSongs = SongModel.getDescansarMejorSongs();
+    musicaParaMeditarSongs = SongModel.getMusicaParaMeditarSongs();
   }
 
   @override
@@ -26,79 +23,16 @@ class HomePage extends StatelessWidget {
       backgroundColor: Colors.white,
       body: ListView(
         children: [
-          _musicForMediation(),
+          _musicCategoryColumn('Musica para meditar', musicaParaMeditarSongs),
           const SizedBox(
             height: 40,
           ),
-          _musicCategoryColumn('Para descansar mejor'),
+          _musicCategoryColumn('Para descansar mejor', descansarMejorSongs),
           const SizedBox(
             height: 40,
           ),
         ],
       ),
-    );
-  }
-
-  Column _musicForMediation() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Padding(
-          padding: EdgeInsets.only(left: 20),
-          child: Text(
-            'Musica para meditar',
-            style: TextStyle(
-                color: Colors.black, fontSize: 18, fontWeight: FontWeight.w600),
-          ),
-        ),
-        const SizedBox(
-          height: 15,
-        ),
-        SizedBox(
-          height: 240,
-          child: ListView.separated(
-            itemBuilder: (context, index) {
-              return Container(
-                width: 210,
-                decoration: BoxDecoration(
-                    image: const DecorationImage(
-                      image: AssetImage("assets/bgs/zen2.jpeg"),
-                      fit: BoxFit.cover,
-                    ),
-                    color: songs[index].boxColor.withOpacity(0.3),
-                    borderRadius: BorderRadius.circular(20)),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Container(
-                      height: 20,
-                      width: 200,
-                      decoration: BoxDecoration(
-                          color: opaqueColor,
-                          borderRadius: BorderRadius.circular(20)),
-                      child: const Center(
-                        child: Text(
-                          '4 mins',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 14),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              );
-            },
-            separatorBuilder: (context, index) => const SizedBox(
-              width: 25,
-            ),
-            itemCount: songs.length,
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.only(left: 20, right: 20),
-          ),
-        )
-      ],
     );
   }
 
@@ -115,16 +49,16 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Column _musicCategoryColumn(String catTitle) {
+  Column _musicCategoryColumn(String catTitle, List<SongModel> songsList) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsets.only(left: 20),
           child: Text(
-            catTitle,
+            "${"$catTitle (${songsList.length}"})",
             style: const TextStyle(
-                color: Colors.black, fontSize: 18, fontWeight: FontWeight.w600),
+                color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600),
           ),
         ),
         const SizedBox(
@@ -138,10 +72,9 @@ class HomePage extends StatelessWidget {
                 width: 210,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage(songs[index].bgImage),
+                      image: AssetImage(songsList[index].bgImage),
                       fit: BoxFit.cover,
                     ),
-                    color: songs[index].boxColor.withOpacity(0.3),
                     borderRadius: BorderRadius.circular(20)),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -152,10 +85,10 @@ class HomePage extends StatelessWidget {
                       decoration: BoxDecoration(
                           color: opaqueColor,
                           borderRadius: BorderRadius.circular(20)),
-                      child: const Center(
+                      child: Center(
                         child: Text(
-                          '4 mins',
-                          style: TextStyle(
+                          songsList[index].duration,
+                          style: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w600,
                               fontSize: 14),
@@ -169,7 +102,7 @@ class HomePage extends StatelessWidget {
             separatorBuilder: (context, index) => const SizedBox(
               width: 25,
             ),
-            itemCount: songs.length,
+            itemCount: songsList.length,
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.only(left: 20, right: 20),
           ),
