@@ -8,13 +8,13 @@ class HomePage extends StatelessWidget {
   HomePage({super.key});
 
   List<CategoryModel> categories = [];
-  List<DietModel> diets = [];
+  List<SongModel> songs = [];
   List<PopularDietsModel> popularDiets = [];
   var opaqueColor = const Color.fromARGB(100, 0, 0, 0);
 
   void _getInitialInfo() {
     categories = CategoryModel.getCategories();
-    diets = DietModel.getDiets();
+    songs = SongModel.getSongs();
     popularDiets = PopularDietsModel.getPopularDiets();
   }
 
@@ -65,7 +65,7 @@ class HomePage extends StatelessWidget {
                       image: AssetImage("assets/bgs/zen2.jpeg"),
                       fit: BoxFit.cover,
                     ),
-                    color: diets[index].boxColor.withOpacity(0.3),
+                    color: songs[index].boxColor.withOpacity(0.3),
                     borderRadius: BorderRadius.circular(20)),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -93,7 +93,7 @@ class HomePage extends StatelessWidget {
             separatorBuilder: (context, index) => const SizedBox(
               width: 25,
             ),
-            itemCount: diets.length,
+            itemCount: songs.length,
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.only(left: 20, right: 20),
           ),
@@ -138,10 +138,10 @@ class HomePage extends StatelessWidget {
                 width: 210,
                 decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage(diets[index].bgImage),
+                      image: AssetImage(songs[index].bgImage),
                       fit: BoxFit.cover,
                     ),
-                    color: diets[index].boxColor.withOpacity(0.3),
+                    color: songs[index].boxColor.withOpacity(0.3),
                     borderRadius: BorderRadius.circular(20)),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -169,7 +169,7 @@ class HomePage extends StatelessWidget {
             separatorBuilder: (context, index) => const SizedBox(
               width: 25,
             ),
-            itemCount: diets.length,
+            itemCount: songs.length,
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.only(left: 20, right: 20),
           ),

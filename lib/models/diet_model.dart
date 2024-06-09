@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class DietModel {
+class SongModel {
   String name;
   String bgImage;
   String level;
@@ -9,7 +9,7 @@ class DietModel {
   Color boxColor;
   bool viewIsSelected;
 
-  DietModel(
+  SongModel(
       {required this.name,
       required this.bgImage,
       required this.level,
@@ -18,10 +18,10 @@ class DietModel {
       required this.boxColor,
       required this.viewIsSelected});
 
-  static List<DietModel> getDiets() {
-    List<DietModel> diets = [];
+  static List<SongModel> getSongs() {
+    List<SongModel> diets = [];
 
-    diets.add(DietModel(
+    diets.add(SongModel(
         name: 'Honey Pancake',
         bgImage: 'assets/bgs/zen1.jpeg',
         level: 'Easy',
@@ -30,7 +30,7 @@ class DietModel {
         viewIsSelected: true,
         boxColor: const Color(0xff9DCEFF)));
 
-    diets.add(DietModel(
+    diets.add(SongModel(
         name: 'Canai Bread',
         bgImage: 'assets/bgs/zen1.jpeg',
         level: 'Easy',
