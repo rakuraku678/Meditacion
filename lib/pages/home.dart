@@ -2,6 +2,7 @@ import 'package:fitness/constants.dart';
 import 'package:fitness/models/song_model.dart';
 import 'package:fitness/pages/music_player.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 // ignore: must_be_immutable
 class HomePage extends StatelessWidget {
@@ -88,17 +89,15 @@ class HomePage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20)),
                   child: Stack(
                     children: [
-                      Positioned(
-                        top: 5,
-                        right: 5,
-                        child: Icon(
-                          Icons.workspace_premium_sharp,
-                          color: songsList[index].isPremium
-                              ? colorPremium
-                              : Colors.transparent,
-                          size: 30,
-                        ),
-                      ),
+                      if (songsList[index].isPremium)
+                        Positioned(
+                            top: 5,
+                            right: 5,
+                            child: SvgPicture.asset(
+                              'assets/icons/premium-icon.svg',
+                              width: 25,
+                              height: 25,
+                            )),
                       Positioned(
                           bottom: 0,
                           left: 6,
