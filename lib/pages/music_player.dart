@@ -13,15 +13,13 @@ class MusicPlayerPage extends StatefulWidget {
 }
 
 class _MusicPlayerPageState extends State<MusicPlayerPage> {
-  var opaqueColor = const Color.fromARGB(100, 0, 0, 0);
-
   final AudioPlayer _audioPlayer = AudioPlayer();
   bool isPlaying = false;
 
   void _playMusic() async {
-    await _audioPlayer.play(UrlSource(
-        'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'));
-    //await _audioPlayer.play(AssetSource('audio/temako.mp3'));
+    // await _audioPlayer.play(UrlSource(
+    //    'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3'));
+    await _audioPlayer.play(AssetSource('audio/temako.mp3'));
     setState(() {
       isPlaying = true;
     });

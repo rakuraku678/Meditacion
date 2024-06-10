@@ -17,7 +17,7 @@ class SongModel {
         name: 'En el bosque',
         bgImage: 'assets/bgs/zen1.jpeg',
         duration: '30 mins',
-        isPremium: false));
+        isPremium: true));
 
     songs.add(SongModel(
         name: 'Lluvia',

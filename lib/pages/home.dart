@@ -1,15 +1,14 @@
+import 'package:fitness/constants.dart';
 import 'package:fitness/models/song_model.dart';
-import 'package:fitness/pages/gptsong/music_player.dart';
+import 'package:fitness/pages/music_player.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
+// ignore: must_be_immutable
 class HomePage extends StatelessWidget {
   HomePage({super.key});
 
   List<SongModel> musicaParaMeditarSongs = [];
   List<SongModel> descansarMejorSongs = [];
-
-  var opaqueColor = const Color.fromARGB(100, 0, 0, 0);
 
   void _getInitialInfo() {
     descansarMejorSongs = SongModel.getDescansarMejorSongs();
@@ -87,25 +86,35 @@ class HomePage extends StatelessWidget {
                         fit: BoxFit.cover,
                       ),
                       borderRadius: BorderRadius.circular(20)),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                  child: Stack(
                     children: [
-                      Container(
-                        height: 20,
-                        width: 200,
-                        decoration: BoxDecoration(
-                            color: opaqueColor,
-                            borderRadius: BorderRadius.circular(20)),
-                        child: Center(
-                          child: Text(
-                            songsList[index].duration,
-                            style: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 14),
-                          ),
+                      Positioned(
+                        top: 5,
+                        right: 5,
+                        child: Icon(
+                          Icons.workspace_premium_sharp,
+                          color: songsList[index].isPremium
+                              ? colorPremium
+                              : Colors.transparent,
+                          size: 30,
                         ),
-                      )
+                      ),
+                      Positioned(
+                          bottom: 0,
+                          left: 6,
+                          right: 6,
+                          child: Container(
+                            height: 20,
+                            decoration: BoxDecoration(
+                                color: colorOpaque,
+                                borderRadius: BorderRadius.circular(20)),
+                            child: Center(
+                              child: Text(
+                                songsList[index].duration,
+                                style: textStyleDuration,
+                              ),
+                            ),
+                          ))
                     ],
                   ),
                 ),
