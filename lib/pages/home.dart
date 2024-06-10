@@ -1,5 +1,6 @@
 import 'package:fitness/constants.dart';
 import 'package:fitness/models/song_model.dart';
+import 'package:fitness/pages/become_premium.dart';
 import 'package:fitness/pages/music_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -10,6 +11,7 @@ class HomePage extends StatelessWidget {
 
   List<SongModel> musicaParaMeditarSongs = [];
   List<SongModel> descansarMejorSongs = [];
+  var userIsPremium = false;
 
   void _getInitialInfo() {
     descansarMejorSongs = SongModel.getDescansarMejorSongs();
@@ -74,10 +76,20 @@ class HomePage extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
+                        builder: (context) =>
+                            userIsPremium || !songsList[index].isPremium
+                                ? MusicPlayerPage(
+                                    songName: songsList[index].name,
+                                    bgImage: songsList[index].bgImage)
+                                : BecomePremium(),
+                      ));
+                  /*
+                      MaterialPageRoute(
                         builder: (context) => MusicPlayerPage(
                             songName: songsList[index].name,
                             bgImage: songsList[index].bgImage),
                       ));
+                      */
                 },
                 child: Container(
                   width: 210,
