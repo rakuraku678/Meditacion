@@ -24,7 +24,7 @@ class BecomePremium extends StatelessWidget {
                   top: 60,
                   right: 5,
                   child: IconButton(
-                    icon: Icon(Icons.close),
+                    icon: const Icon(Icons.close),
                     iconSize: 30,
                     color: Colors.black,
                     onPressed: () {
@@ -32,51 +32,47 @@ class BecomePremium extends StatelessWidget {
                     },
                   ),
                 ),
-                const Positioned(
-                  top: 100,
-                  left: 5,
-                  right: 5,
-                  child: Center(
-                      child: Text(
-                    PASATE_A_PREMIUM,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 30,
-                        fontWeight: FontWeight.w600),
-                  )),
-                ),
-                Positioned(
-                  top: 150,
-                  //left: 50,
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(50, 100, 5, 0),
                   child: Column(
-                      //mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Container(
-                          child: Text(
-                            textAlign: TextAlign.left,
-                            '+ Musica',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600),
-                          ),
-                        ),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            textAlign: TextAlign.left,
-                            'Eventos en zoom',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w600),
-                          ),
-                        ),
-                      ]),
-                )
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      const Text(
+                        PASATE_A_PREMIUM,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 30,
+                            fontWeight: FontWeight.w600),
+                      ),
+                      const SizedBox(height: 40),
+                      _createListContainerElement('+ Música'),
+                      const SizedBox(height: 20),
+                      _createListContainerElement('Acceso a eventos en zoom'),
+                      const SizedBox(height: 20),
+                      _createListContainerElement('Meditaciones guiadas'),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
         ));
+  }
+
+  Container _createListContainerElement(String title) {
+    return Container(
+      padding: const EdgeInsets.all(8.0),
+      margin: const EdgeInsets.only(bottom: 10.0),
+      decoration: BoxDecoration(
+          color: Colors.white.withOpacity(0.6),
+          borderRadius: BorderRadius.circular(100)),
+      child: _createListTextElement(title),
+    );
+  }
+
+  Text _createListTextElement(String title) {
+    return Text(title,
+        style: const TextStyle(
+            color: Colors.black, fontSize: 18, fontWeight: FontWeight.w500));
   }
 }
