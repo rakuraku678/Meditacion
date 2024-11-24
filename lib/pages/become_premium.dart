@@ -50,6 +50,8 @@ class BecomePremium extends StatelessWidget {
                       _createListContainerElement('Acceso a eventos en zoom'),
                       const SizedBox(height: 20),
                       _createListContainerElement('Meditaciones guiadas'),
+                      const SizedBox(height: 40),
+                      _createPremiumButton(),
                     ],
                   ),
                 ),
@@ -74,5 +76,18 @@ class BecomePremium extends StatelessWidget {
     return Text(title,
         style: const TextStyle(
             color: Colors.black, fontSize: 18, fontWeight: FontWeight.w500));
+  }
+
+  Container _createPremiumButton() {
+    return Container(
+      padding: const EdgeInsets.all(8.0),
+      margin: const EdgeInsets.only(bottom: 10.0),
+      decoration: BoxDecoration(
+          color: const Color.fromARGB(255, 255, 215, 0),
+          borderRadius: BorderRadius.circular(90)),
+      child: const Text("Pagars",
+          style: TextStyle(
+              color: Colors.black, fontSize: 25, fontWeight: FontWeight.w600)),
+    );
   }
 }

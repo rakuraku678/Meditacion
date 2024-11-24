@@ -42,9 +42,9 @@ class HomePage extends StatelessWidget {
   AppBar appBar() {
     return AppBar(
       title: const Text(
-        'Meditaciones Vivinescas',
+        'Änima',
         style: TextStyle(
-            color: Colors.black, fontSize: 15, fontWeight: FontWeight.bold),
+            color: Colors.black, fontSize: 25, fontWeight: FontWeight.bold),
       ),
       backgroundColor: Colors.white,
       elevation: 0.0,
